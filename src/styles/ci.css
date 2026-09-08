@@ -1,0 +1,262 @@
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: ooca;
+}
+
+/* Typography
+   EN: Gotham Rounded (add the licensed font files to /public/fonts when available)
+   TH: Prompt
+*/
+
+
+@plugin "daisyui/theme" {
+  name: 'ooca';
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #ffffff;
+  --color-base-200: #f8f8f8;
+  --color-base-300: #f1f1f1;
+  --color-base-content: #000000;
+
+  --color-primary: #00c4b3;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #1f77df;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #f9a000;
+  --color-accent-content: #000000;
+
+  --color-neutral: #355956;
+  --color-neutral-content: #ffffff;
+
+  --color-info: #1f77df;
+  --color-info-content: #ffffff;
+
+  --color-success: #8ad866;
+  --color-success-content: #000000;
+
+  --color-warning: #ff8f48;
+  --color-warning-content: #000000;
+
+  --color-error: #ef7773;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 0.75rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --font-sans: 'Prompt', ui-sans-serif, system-ui, sans-serif;
+  --font-en: 'Gotham Rounded', 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+  --font-th: 'Prompt', ui-sans-serif, system-ui, sans-serif;
+  --font-rounded: 'Gotham Rounded', 'Arial Rounded MT Bold', 'Trebuchet MS', 'Prompt', sans-serif;
+
+  --color-ooca-primary: #00c4b3;
+  --color-ooca-primary-light: #b3ede8;
+  --color-ooca-primary-pale: #dbf0ee;
+  --color-ooca-primary-dark: #009688;
+
+  --color-ooca-blue: #1f77df;
+  --color-ooca-blue-300: #62a0e9;
+  --color-ooca-blue-200: #8fb8ec;
+  --color-ooca-blue-100: #c7ddf7;
+  --color-ooca-blue-50: #e4effb;
+
+  --color-ooca-orange: #f9a000;
+  --color-ooca-orange-light: #f8e4b3;
+
+  --color-ooca-error: #ef7773;
+  --color-ooca-error-light: #fad6d5;
+  --color-ooca-warning: #ff8f48;
+  --color-ooca-warning-light: #ffdcc9;
+  --color-ooca-success: #8ad866;
+  --color-ooca-success-light: #dcf3d1;
+
+  --color-ooca-black: #000000;
+  --color-ooca-gray-400: #c4c4c4;
+  --color-ooca-gray-200: #f1f1f1;
+  --color-ooca-gray-100: #f6f6f6;
+  --color-ooca-white: #ffffff;
+
+  --color-ooca-gray-turquoise-1: #355956;
+  --color-ooca-gray-turquoise-2: #3e6866;
+  --color-ooca-gray-turquoise-3: #528984;
+  --color-ooca-gray-turquoise-4: #79ada9;
+
+  --shadow-ooca-sm: 0 2px 8px rgb(0 0 0 / 8%);
+  --shadow-ooca-md: 0 8px 24px rgb(0 0 0 / 10%);
+  --shadow-ooca-lg: 0 16px 40px rgb(0 0 0 / 12%);
+}
+
+:root {
+  --ooca-primary: #00c4b3;
+  --ooca-primary-light: #b3ede8;
+  --ooca-primary-pale: #dbf0ee;
+  --ooca-primary-dark: #009688;
+  --ooca-blue: #1f77df;
+  --ooca-orange: #f9a000;
+  --ooca-error: #ef7773;
+  --ooca-warning: #ff8f48;
+  --ooca-success: #8ad866;
+  --ooca-black: #000000;
+  --ooca-gray-400: #c4c4c4;
+  --ooca-gray-200: #f1f1f1;
+  --ooca-gray-100: #f6f6f6;
+  --ooca-white: #ffffff;
+}
+
+html {
+  font-family: 'Prompt', ui-sans-serif, system-ui, sans-serif;
+  background: var(--ooca-gray-100);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--ooca-black);
+  background: var(--ooca-gray-100);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Reusable CI primitives */
+.ooca-page {
+  min-height: 100vh;
+  background: var(--ooca-gray-100);
+}
+
+.ooca-container {
+  width: min(calc(100% - 32px), 1200px);
+  margin-inline: auto;
+}
+
+.ooca-title {
+  font-family: var(--font-rounded);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ooca-body {
+  font-weight: 400;
+  line-height: 1.5;
+  color: #777777;
+}
+
+.ooca-btn {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 9999px;
+  padding: 0.625rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease,
+    background-color 160ms ease;
+}
+
+.ooca-btn:hover {
+  filter: brightness(0.96);
+}
+
+.ooca-btn:active {
+  transform: translateY(1px);
+}
+
+.ooca-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.ooca-btn-primary {
+  background: var(--ooca-primary);
+  color: var(--ooca-white);
+}
+
+.ooca-btn-secondary {
+  background: var(--ooca-blue);
+  color: var(--ooca-white);
+}
+
+.ooca-btn-outline {
+  border: 2px solid var(--ooca-primary);
+  background: transparent;
+  color: var(--ooca-primary);
+}
+
+.ooca-btn-outline:hover {
+  background: var(--ooca-primary);
+  color: var(--ooca-white);
+}
+
+.ooca-card {
+  border-radius: 1rem;
+  background: var(--ooca-white);
+  box-shadow: var(--shadow-ooca-sm);
+}
+
+.ooca-focus {
+  outline: 3px solid color-mix(in srgb, var(--ooca-primary) 30%, transparent);
+  outline-offset: 2px;
+}
+
+@media (min-width: 640px) {
+  .ooca-container {
+    width: min(calc(100% - 48px), 1200px);
+  }
+}
+
+
+/* Language-aware typography */
+.font-gotham { font-family: 'Gotham Rounded', 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif; }
+.font-prompt { font-family: 'Prompt', ui-sans-serif, system-ui, sans-serif; }
+
+.ooca-screen {
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+.ooca-safe-bottom {
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+.ooca-desktop-shell {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .ooca-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 359px) {
+  .ooca-container {
+    width: min(calc(100% - 24px), 1200px);
+  }
+}
