@@ -4298,3 +4298,471 @@ body {
     animation: none !important;
   }
 }
+
+
+/* ===== Screen 3 refresh — soft CI gradient + clear next-step hierarchy ===== */
+.takeaway-screen {
+  background:
+    radial-gradient(circle at 50% 18%, rgb(219 240 238 / 76%) 0%, rgb(219 240 238 / 30%) 23%, transparent 46%),
+    linear-gradient(180deg, #eef9f8 0%, #f7f8f8 38%, #f6f6f6 100%);
+}
+
+.takeaway-screen .experience-shell {
+  min-height: 100svh;
+  min-height: 100dvh;
+  background: transparent;
+}
+
+.takeaway-content {
+  width: 100%;
+  min-height: calc(100svh - 64px);
+  min-height: calc(100dvh - 64px);
+  box-sizing: border-box;
+  padding: 28px 20px max(34px, env(safe-area-inset-bottom));
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.takeaway-intro {
+  width: min(100%, 720px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.takeaway-intro h1 {
+  margin: 0;
+  color: #111;
+  font-family: var(--font-th);
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -.025em;
+}
+
+.takeaway-intro h1 span {
+  color: var(--ooca-blue);
+}
+
+.takeaway-intro > p:last-child {
+  margin: 6px auto 0;
+  max-width: 580px;
+  color: #777;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Main personalised reflection card */
+.takeaway-hero {
+  position: relative;
+  width: min(100%, 720px);
+  min-height: 188px;
+  margin: 24px auto 0;
+  padding: 20px 210px 20px 28px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--takeaway-soft) 92%, white), #dff3f1);
+  box-shadow: 0 10px 28px rgb(25 93 91 / 7%);
+  overflow: hidden;
+  text-align: left;
+}
+
+.takeaway-hero::after {
+  content: '';
+  position: absolute;
+  width: 210px;
+  height: 130px;
+  right: 8px;
+  bottom: -48px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 38%);
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+.takeaway-hero__mascot {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 8px;
+  width: 190px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.takeaway-hero__mascot img {
+  display: block;
+  width: 190px;
+  height: 190px;
+  object-fit: contain;
+  transform-origin: 50% 80%;
+  animation: takeaway-mascot-float 4.8s ease-in-out infinite;
+}
+
+.takeaway-hero__label {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  margin: 0 0 12px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 92%);
+  color: #303030;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.takeaway-hero__text {
+  position: relative;
+  z-index: 3;
+  margin: 0;
+  max-width: 490px;
+  color: #111;
+  font-size: clamp(20px, 2.8vw, 28px);
+  font-weight: 600;
+  line-height: 1.42;
+  letter-spacing: -.02em;
+  white-space: pre-line;
+}
+
+.takeaway-hero__caveat {
+  position: relative;
+  z-index: 3;
+  max-width: 490px;
+  margin: 8px 0 0;
+  color: #555;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Insight + next step cards */
+.takeaway-section {
+  width: min(100%, 720px);
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 16px auto 0;
+  padding: 18px 20px;
+  border: 1px solid rgb(255 255 255 / 90%);
+  border-radius: 15px;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 5px 18px rgb(0 0 0 / 4%);
+  text-align: left;
+}
+
+.takeaway-section__icon {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.takeaway-section__icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.takeaway-section__icon--blue {
+  background: #e4effb;
+}
+
+.takeaway-section__icon--blue img {
+  filter: brightness(0) saturate(100%) invert(43%) sepia(96%) saturate(1600%) hue-rotate(196deg) brightness(91%);
+}
+
+.takeaway-section__icon--green {
+  background: #dbf0ee;
+}
+
+.takeaway-section__icon--green img {
+  filter: brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(890%) hue-rotate(127deg) brightness(82%);
+}
+
+.takeaway-section__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.takeaway-section h2 {
+  margin: 0 0 4px;
+  color: #111;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.takeaway-section p {
+  margin: 0;
+  color: #555;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* Future step: available in the experience, but not active in this MVP. */
+.takeaway-section--next {
+  align-items: flex-start;
+}
+
+.takeaway-try--disabled {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  box-sizing: border-box;
+  background: #d7e1e8;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: not-allowed;
+  opacity: 1;
+  transition: background-color 160ms ease;
+}
+
+.takeaway-try--disabled:disabled {
+  background: #d3dde5;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.takeaway-locked-hint {
+  margin-top: 7px !important;
+  color: #9aa3a5 !important;
+  font-size: 10.5px !important;
+  line-height: 1.45 !important;
+}
+
+/* The only active action on Screen 3: restart the experience from Home. */
+.takeaway-final {
+  width: min(100%, 720px);
+  margin: 24px auto 0;
+  text-align: center;
+}
+
+.takeaway-home-button {
+  width: min(100%, 270px);
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ooca-primary);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 7px 18px rgb(0 196 179 / 15%);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.takeaway-home-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgb(0 196 179 / 20%);
+  filter: brightness(.98);
+}
+
+.takeaway-home-button:active {
+  transform: translateY(0) scale(.985);
+}
+
+.takeaway-home-button:focus-visible {
+  outline: 3px solid rgb(0 196 179 / 25%);
+  outline-offset: 3px;
+}
+
+@keyframes takeaway-mascot-float {
+  0%, 100% { transform: translateY(0) rotate(-.5deg); }
+  50% { transform: translateY(-5px) rotate(.5deg); }
+}
+
+@media (max-width: 699px) {
+  .takeaway-content {
+    min-height: calc(100svh - 64px);
+    padding: 22px 16px max(28px, env(safe-area-inset-bottom));
+  }
+
+  .takeaway-intro h1 {
+    font-size: 23px;
+    line-height: 1.38;
+  }
+
+  .takeaway-intro > p:last-child {
+    max-width: 340px;
+    margin-top: 5px;
+    font-size: 11.5px;
+  }
+
+  .takeaway-hero {
+    width: 100%;
+    min-height: 198px;
+    margin-top: 22px;
+    padding: 18px 128px 18px 16px;
+    border-radius: 14px;
+  }
+
+  .takeaway-hero__mascot {
+    top: 1px;
+    right: -1px;
+    width: 142px;
+    height: 142px;
+  }
+
+  .takeaway-hero__mascot img {
+    width: 142px;
+    height: 142px;
+  }
+
+  .takeaway-hero__label {
+    min-height: 30px;
+    margin-bottom: 10px;
+    padding-inline: 12px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .takeaway-hero__text {
+    max-width: 235px;
+    font-size: 18px;
+    line-height: 1.42;
+  }
+
+  .takeaway-hero__caveat {
+    max-width: 238px;
+    margin-top: 7px;
+    font-size: 11.5px;
+    line-height: 1.55;
+  }
+
+  .takeaway-section {
+    gap: 12px;
+    margin-top: 14px;
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .takeaway-section__icon {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .takeaway-section__icon img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .takeaway-section h2 {
+    font-size: 15px;
+  }
+
+  .takeaway-section p {
+    font-size: 12.5px;
+    line-height: 1.62;
+  }
+
+  .takeaway-try--disabled {
+    width: 100%;
+    min-height: 42px;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  .takeaway-locked-hint {
+    font-size: 10px !important;
+  }
+
+  .takeaway-final {
+    margin-top: 22px;
+  }
+
+  .takeaway-home-button {
+    width: min(100%, 270px);
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 359px) {
+  .takeaway-content {
+    padding-inline: 12px;
+  }
+
+  .takeaway-hero {
+    min-height: 188px;
+    padding-right: 112px;
+  }
+
+  .takeaway-hero__mascot {
+    width: 124px;
+    height: 124px;
+    right: -3px;
+  }
+
+  .takeaway-hero__mascot img {
+    width: 124px;
+    height: 124px;
+  }
+
+  .takeaway-hero__text {
+    font-size: 17px;
+  }
+
+  .takeaway-hero__caveat {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 700px) {
+  .takeaway-content {
+    padding-top: 30px;
+  }
+
+  .takeaway-hero {
+    min-height: 210px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .takeaway-hero__mascot {
+    width: 218px;
+    height: 218px;
+    top: -4px;
+    right: -2px;
+  }
+
+  .takeaway-hero__mascot img {
+    width: 218px;
+    height: 218px;
+  }
+
+  .takeaway-section {
+    margin-top: 18px;
+  }
+
+  .takeaway-final {
+    margin-top: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .takeaway-hero__mascot {
+    animation: none !important;
+  }
+}
