@@ -1,75 +1,36 @@
 <script setup>
-import OocaButton from './ui/OocaButton.vue'
+import OocaHeader from './OocaHeader.vue'
 
 const emit = defineEmits(['start'])
 </script>
 
 <template>
-  <main class="ooca-page ooca-screen bg-[#F6F6F6]">
-    <div
-      class="ooca-desktop-shell flex min-h-[100svh] items-center justify-center px-5 py-8 sm:px-8 lg:px-12"
-    >
-      <section
-        class="flex w-full max-w-[520px] flex-col items-center text-center lg:max-w-[680px]"
-      >
-        <img
-          src="/logo.svg"
-          alt="mindf:ll"
-          class="h-auto w-[138px] sm:w-[155px] lg:w-[175px]"
-        />
+  <main class="ooca-page home-screen">
+    <div class="home-shell">
+      <OocaHeader :show-sound="false" lang="th" @home="() => {}" />
 
-        <img
-          src="/img/mooca-summer.svg"
-          alt=""
-          aria-hidden="true"
-          class="mt-20 w-[205px] object-contain sm:mt-20 sm:w-[225px] lg:mt-16 lg:w-[245px]"
-        />
-
-        <div class="mt-10 sm:mt-11 lg:mt-9">
-          <h1
-            class="font-prompt text-[26px] font-semibold leading-[1.35] tracking-tight text-black sm:text-[30px] lg:text-[34px]"
-          >
-            เช็กอินความรู้สึกใน 2 นาที
-          </h1>
-          <p
-            class="font-gotham mt-2 text-[17px] font-semibold leading-[1.4] text-[#1F77DF] sm:text-lg lg:text-xl"
-          >
-            A 2-minute check-in with yourself
-          </p>
-          <p
-            class="font-prompt mx-auto mt-3 max-w-[430px] text-[13px] leading-6 text-[#888] sm:text-sm lg:text-base"
-          >
-            หยุดพักสักนิด แล้วลองสำรวจว่า<br class="sm:hidden" />
-            ตอนนี้คุณกำลังรู้สึกอย่างไร
-          </p>
-          <p
-            class="font-gotham mx-auto mt-1 max-w-[450px] text-[12px] leading-5 text-[#999] sm:text-sm"
-          >
-            Pause for a moment and notice how you feel right now.
-          </p>
+      <section class="home-content" aria-labelledby="home-title">
+        <div class="home-mascot-wrap">
+          <span class="home-spark" aria-hidden="true">
+            <img src="/img/icon/sunny.svg" alt="" />
+          </span>
+          <img src="/img/mooca-summer.svg" alt="" class="home-mascot" />
         </div>
 
-        <div class="mt-9 flex flex-col items-center sm:mt-10">
-          <p class="font-prompt mb-3 text-xs text-[#888] sm:text-sm">
-            เลือกภาษา / Choose your language
-          </p>
+        <div class="home-copy font-prompt">
+          <h1 id="home-title">เช็กอินความรู้สึก<br /><span>ของคุณกันดีกว่า</span></h1>
+          <p>หยุดพักสักนิด แล้วลองสังเกตตัวเอง<br />ไปด้วยกันนะ</p>
+        </div>
 
-          <div class="flex gap-3">
-            <OocaButton
-              class="font-prompt min-w-[104px] sm:min-w-[112px]"
-              variant="secondary"
-              @click="emit('start', 'th')"
-            >
+        <div class="home-language" aria-label="Choose language">
+          <p class="font-prompt">เลือกภาษาที่อยากใช้</p>
+          <div class="home-language-buttons">
+            <button class="language-button language-button--th font-prompt" type="button" @click="emit('start', 'th')">
               ภาษาไทย
-            </OocaButton>
-
-            <OocaButton
-              class="font-gotham min-w-[104px] sm:min-w-[112px]"
-              variant="secondary"
-              @click="emit('start', 'en')"
-            >
+            </button>
+            <button class="language-button language-button--en font-gotham" type="button" @click="emit('start', 'en')">
               English
-            </OocaButton>
+            </button>
           </div>
         </div>
       </section>
