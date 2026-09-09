@@ -662,161 +662,29 @@ select {
 .micro-feedback-enter-active, .micro-feedback-leave-active { transition: all 220ms ease; }
 .micro-feedback-enter-from, .micro-feedback-leave-to { opacity: 0; transform: translateY(5px); }
 
-/* Takeaway */
-.takeaway-content { min-height: calc(100svh - 87px); display: flex; flex-direction: column; align-items: center; padding: 20px 16px max(22px, env(safe-area-inset-bottom)); }
-.takeaway-mascot-wrap { position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; }
-.takeaway-mascot { width: 140px; height: 140px; object-fit: contain; animation: mascot-breathe 5s ease-in-out infinite; }
-.takeaway-intro { margin-top: 3px; }
-.takeaway-intro h1 { font-size: 22px; }
-.takeaway-intro > p:last-child { max-width: 320px; }
 
-/* Hero reflection: strongest visual weight */
-.takeaway-hero {
-  width: min(100%, 357px);
-  margin-top: 18px;
-  padding: 20px 20px 22px;
-  border-radius: 16px;
-  background: linear-gradient(180deg, var(--takeaway-soft), color-mix(in srgb, var(--takeaway-soft) 55%, #fff));
-  border: 1px solid color-mix(in srgb, var(--takeaway-color) 22%, transparent);
-  box-shadow: 0 10px 28px color-mix(in srgb, var(--takeaway-color) 14%, transparent);
+.reflection-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 48px;
+  border-radius: 8px;
+}
+
+.reflection-option > span:first-child {
+  display: block;
+  width: 100%;
   text-align: center;
 }
-.takeaway-hero__label { margin: 0 0 8px; color: var(--takeaway-color); font-size: 12px; font-weight: 600; letter-spacing: .02em; }
-.takeaway-hero__text { margin: 0; color: #000; font-size: 19px; font-weight: 600; line-height: 1.5; }
-.takeaway-hero__caveat { margin: 10px 0 0; color: #555; font-size: 12.5px; font-weight: 400; line-height: 1.65; }
 
-/* Insight: medium weight */
-.takeaway-section { width: min(100%, 357px); margin-top: 16px; padding: 14px 16px; border-radius: 12px; background: #fff; border: 1px solid #eeeeee; }
-.takeaway-section h2 { margin: 0 0 4px; color: var(--takeaway-color); font-size: 13.5px; font-weight: 600; }
-.takeaway-section p { margin: 0; color: #555; font-size: 13px; line-height: 1.6; }
-
-/* Next step: lighter weight, with its own small try-this action */
-.takeaway-section--next { background: var(--takeaway-soft); border: 0; }
-.takeaway-try { display: inline-flex; align-items: center; justify-content: center; margin-top: 10px; min-height: 34px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--takeaway-color); color: #fff; font-size: 12.5px; font-weight: 500; cursor: pointer; transition: transform 180ms ease, filter 180ms ease; }
-.takeaway-try:hover { filter: brightness(.96); }
-.takeaway-try:active { transform: translateY(1px); }
-.takeaway-try-done { margin: 10px 0 0; color: #00a99b; font-size: 12px; }
-
-/* What next: save / explore / maybe-later */
-.takeaway-whatnext { width: min(100%, 357px); margin-top: 22px; text-align: center; }
-.takeaway-whatnext__label { margin: 0 0 12px; color: #777; font-size: 13px; }
-.takeaway-actions-row { display: flex; gap: 10px; align-items: stretch; }
-.takeaway-save, .takeaway-explore { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; border-radius: 999px; padding: 0 14px; font-size: 13.5px; font-weight: 500; cursor: pointer; transition: transform 180ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease; }
-.takeaway-save { border: 0; background: var(--ooca-primary); color: #fff; }
-.takeaway-save:hover { filter: brightness(.97); }
-.takeaway-save--done { background: color-mix(in srgb, var(--ooca-primary) 16%, #fff); color: var(--ooca-primary-dark); }
-.takeaway-explore { border: 1.5px solid var(--ooca-primary); background: transparent; color: var(--ooca-primary-dark); }
-.takeaway-explore:hover { background: color-mix(in srgb, var(--ooca-primary) 10%, transparent); }
-.takeaway-explore span { display: inline-block; transition: transform 180ms ease; }
-.takeaway-explore:hover span { transform: translateX(2px); }
-.takeaway-later { display: block; width: 100%; margin-top: 10px; border: 0; background: transparent; color: #999; font-size: 12.5px; cursor: pointer; }
-.takeaway-later:hover { color: #00a99b; }
-
-/* Bottom sheet for "Explore" */
-.explore-sheet-backdrop { position: fixed; inset: 0; z-index: 30; display: flex; align-items: flex-end; justify-content: center; background: rgb(0 0 0 / 32%); }
-.explore-sheet { width: min(100%, 480px); max-height: 78svh; overflow-y: auto; padding: 10px 20px max(22px, env(safe-area-inset-bottom)); border-radius: 20px 20px 0 0; background: #fff; box-shadow: 0 -8px 30px rgb(0 0 0 / 12%); }
-.explore-sheet__handle { width: 36px; height: 4px; margin: 6px auto 14px; border-radius: 999px; background: #e2e2e2; }
-.explore-sheet h3 { margin: 0 0 12px; font-size: 16px; font-weight: 600; text-align: center; }
-.explore-sheet ul { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.explore-sheet li { padding: 12px 14px; border-radius: 12px; background: #f6f6f6; }
-.explore-sheet li strong { display: block; margin-bottom: 3px; font-size: 13.5px; color: #222; }
-.explore-sheet li span { display: block; font-size: 12.5px; color: #777; line-height: 1.55; }
-.explore-sheet__close { display: block; width: 100%; min-height: 42px; border: 0; border-radius: 999px; background: var(--ooca-gray-100); color: #555; font-size: 13.5px; cursor: pointer; }
-.sheet-enter-active, .sheet-leave-active { transition: opacity 220ms ease; }
-.sheet-enter-active .explore-sheet, .sheet-leave-active .explore-sheet { transition: transform 260ms cubic-bezier(.22,1,.36,1); }
-.sheet-enter-from, .sheet-leave-to { opacity: 0; }
-.sheet-enter-from .explore-sheet, .sheet-leave-to .explore-sheet { transform: translateY(100%); }
-
-/* Graceful close screen */
-.takeaway-closing { min-height: calc(100svh - 87px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center; animation: card-rise 420ms cubic-bezier(.22, 1, .36, 1); }
-.takeaway-closing img { width: 130px; height: 130px; object-fit: contain; animation: mascot-breathe 5s ease-in-out infinite; }
-.takeaway-closing p { margin: 0; max-width: 300px; color: #444; font-size: 15px; line-height: 1.6; }
-
-.takeaway-done { margin: 10px 0 0; color: #00a99b; font-size: 12px; }
-.action-pop-enter-active { animation: action-pop 350ms ease; }
-
-/* Progressive disclosure: gentle staggered reveal down the takeaway screen */
-.reveal { animation: reveal-in 560ms cubic-bezier(.22, 1, .36, 1) both; }
-.reveal-0 { animation-delay: 0s; }
-.reveal-1 { animation-delay: .3s; }
-.reveal-2 { animation-delay: .6s; }
-.reveal-3 { animation-delay: 1s; }
-.reveal-4 { animation-delay: 1.3s; }
-.reveal-5 { animation-delay: 1.6s; }
-
-@keyframes reveal-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes gentle-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-@keyframes mascot-breathe { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-4px) scale(1.015); } }
-@keyframes cloud-drift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px) translateY(-2px); } }
-@keyframes card-rise { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@keyframes action-pop { 0% { opacity: 0; transform: translateY(5px); } 100% { opacity: 1; transform: translateY(0); } }
-
-/* Accessibility: the experience must fully work with reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-  .reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
+.reflection-check {
+  right: 12px;
+  width: 20px;
+  height: 20px;
 }
 
-@media (min-width: 700px) {
-  .experience-shell, .home-shell { max-width: 1440px; margin: 0 auto; }
-  .experience-header, .home-header { height: 82px; padding-inline: 38px; }
-  .weather-content { padding-top: 34px; }
-  .experience-intro h1 { font-size: 31px; }
-  .experience-intro > p:last-child { font-size: 14px; max-width: 500px; }
-  .weather-helper { margin-top: 12px; font-size: 13px; }
-  .weather-carousel { max-width: 1240px; height: 325px; overflow: visible; margin-top: 28px; }
-  .weather-carousel__track { gap: 22px; padding: 0 20px; transform: none !important; transition: none; justify-content: center; }
-  .weather-carousel__item { flex: 1 1 0; width: auto; max-width: 230px; opacity: 1; filter: none; }
-  .weather-carousel__item .mood-card { transform: scale(.92); }
-  .weather-carousel__item--focused .mood-card { transform: translateY(-2px) scale(.98); }
-  .weather-carousel__item:hover .mood-card, .weather-carousel__item--selected .mood-card { transform: translateY(-5px) scale(1.01); }
-  .carousel-arrow, .weather-dots { display: none; }
-  .weather-selection-status { margin-top: 2px; }
-  .experience-actions { width: 250px; margin-top: 20px; }
-  .home-content { max-width: 700px; margin: 0 auto; padding-top: 45px; }
-  .home-mascot-wrap { width: 250px; height: 210px; }
-  .home-mascot { width: 235px; }
-  .home-copy h1 { font-size: 34px; }
-  .home-language { margin-top: 35px; }
-  .reflection-content, .takeaway-content { padding-top: 25px; }
-  .reflection-options { margin-top: 34px; }
-  .reflection-actions { margin-top: 30px; }
-  .takeaway-hero, .takeaway-section, .takeaway-whatnext { max-width: 520px; }
-  .takeaway-hero__text { font-size: 21px; }
-  .takeaway-content { padding-top: 15px; }
-}
-
-@media (max-width: 359px) {
-  .experience-header, .home-header { height: 76px; }
-  .weather-content { min-height: calc(100svh - 76px); padding-top: 18px; }
-  .experience-intro h1 { font-size: 22px; }
-  .experience-intro > p:last-child { font-size: 11px; }
-  .weather-helper { margin-top: 7px; font-size: 10.5px; }
-  .weather-carousel { margin-top: 19px; height: 285px; }
-  .weather-carousel__track { gap: 22px; padding-inline: calc(50% - 110px); }
-  .weather-carousel__item { flex-basis: 220px; width: 220px; }
-  .weather-selection-status { font-size: 10.5px; margin-top: 2px; }
-  .carousel-arrow { width: 38px; height: 38px; }
-  .carousel-arrow--left { left: 14px; }
-  .carousel-arrow--right { right: 14px; }
-  .mood-card { width: 220px; }
-  .mood-card__image { height: 168px; }
-  .home-content { min-height: calc(100svh - 76px); padding-top: 16px; }
-  .home-mascot-wrap { transform: scale(.86); margin-top: -5px; margin-bottom: -14px; }
-  .home-copy h1 { font-size: 24px; }
-  .reflection-options { margin-top: 36px; gap: 8px; }
-  .reflection-option { min-height: 39px; font-size: 13px; }
-  .takeaway-mascot-wrap { transform: scale(.88); margin-bottom: -10px; }
-  .takeaway-hero { margin-top: 10px; padding: 16px 16px 18px; }
-  .takeaway-hero__text { font-size: 17px; }
-}
-
-/* ===== Refined UI: header + Screen 1 ===== */
+/* ===== Shared header + mood check-in ===== */
 
 /* Full-width white navigation bar */
 .ooca-page {
@@ -957,7 +825,7 @@ select {
   background: var(--ooca-primary-dark);
 }
 
-/* Screen 1 */
+/* Mood check-in */
 .weather-content {
   width: min(100%, 1440px);
   min-height: calc(100svh - 82px);
@@ -1444,7 +1312,7 @@ select {
   color: currentColor;
 }
 
-/* Screen 1 spacing */
+/* Mood check-in spacing */
 .weather-content {
   padding-top: 32px;
   padding-bottom: max(32px, env(safe-area-inset-bottom));
@@ -1863,8 +1731,8 @@ select {
 }
 
 
-/* ===== Screen 2 + Header final refinement =====
-   8px spacing rhythm • quiet header • Screen 2 Figma-aligned choice states
+/* ===== Guided reflection + header refinement =====
+   8px spacing rhythm • quiet header • Figma-aligned choice states
 */
 .ooca-header {
   height: 72px;
@@ -1892,7 +1760,7 @@ select {
   width: 104px;
 }
 
-/* Screen 2 */
+/* Guided reflection */
 .reflection-content {
   min-height: calc(100svh - 72px);
   padding: 24px 24px max(32px, env(safe-area-inset-bottom));
@@ -2160,672 +2028,6 @@ select {
   }
 }
 
-
-
-/* ===== Final UX/UI refinement: Screen 2 + Screen 3 ===== */
-.reflection-option {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 8px 48px;
-  border-radius: 8px;
-}
-
-.reflection-option > span:first-child {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
-.reflection-check {
-  right: 12px;
-  width: 20px;
-  height: 20px;
-}
-
-/* Screen 3: match the supplied Figma card composition */
-.takeaway-content {
-  width: 100%;
-  box-sizing: border-box;
-  min-height: calc(100svh - 64px);
-  padding: 32px 16px max(24px, env(safe-area-inset-bottom));
-  overflow-y: auto;
-  overflow-x: hidden;
-  gap: 0;
-}
-
-.takeaway-intro {
-  width: min(100%, 720px);
-  margin: 0 auto;
-  text-align: center;
-}
-
-.takeaway-intro h1 {
-  margin: 0;
-  font-size: clamp(24px, 3vw, 34px);
-  line-height: 1.3;
-}
-
-.takeaway-intro > p:last-child {
-  margin: 8px auto 0;
-  max-width: 520px;
-  color: #777;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.takeaway-hero {
-  position: relative;
-  width: min(100%, 720px);
-  box-sizing: border-box;
-  margin: 24px auto 0;
-  padding: 24px 28px 20px;
-  border: 0;
-  border-radius: 16px;
-  background: var(--takeaway-soft);
-  box-shadow: none;
-  text-align: center;
-  overflow: hidden;
-}
-
-.takeaway-hero__mascot {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  width: 116px;
-  height: 116px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.takeaway-hero__mascot img {
-  width: 116px;
-  height: 116px;
-  object-fit: contain;
-  animation: mascot-breathe 5s ease-in-out infinite;
-}
-
-.takeaway-hero__label {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  margin: 0 auto 14px;
-  padding: 0 14px;
-  border-radius: 999px;
-  background: #fff;
-  color: #222;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.takeaway-hero__text {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto;
-  max-width: 560px;
-  color: #111;
-  font-size: clamp(19px, 2.3vw, 26px);
-  font-weight: 600;
-  line-height: 1.45;
-  white-space: pre-line;
-}
-
-.takeaway-hero__caveat {
-  position: relative;
-  z-index: 1;
-  max-width: 560px;
-  margin: 10px auto 0;
-  color: #555;
-  font-size: 12.5px;
-  line-height: 1.65;
-}
-
-.takeaway-section {
-  width: min(100%, 720px);
-  box-sizing: border-box;
-  margin: 16px auto 0;
-  padding: 20px 22px;
-  border: 0;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
-  text-align: left;
-}
-
-.takeaway-section h2 {
-  margin: 0 0 8px;
-  color: #111;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.takeaway-section p {
-  margin: 0;
-  color: #555;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.takeaway-section--next {
-  background: #fff;
-  border: 0;
-}
-
-.takeaway-try {
-  min-height: 40px;
-  margin-top: 16px;
-  padding: 0 18px;
-  border: 0;
-  border-radius: 8px;
-  background: var(--takeaway-color);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.takeaway-try-done {
-  margin-top: 12px !important;
-  color: #00a99b !important;
-}
-
-.takeaway-whatnext {
-  width: min(100%, 720px);
-  margin: 24px auto 0;
-  text-align: center;
-}
-
-.takeaway-actions-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.takeaway-save,
-.takeaway-explore {
-  min-height: 48px;
-  border-radius: 999px;
-  padding: 0 18px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.takeaway-save img,
-.takeaway-explore img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-}
-
-.takeaway-later {
-  margin-top: 16px;
-  color: #999;
-  font-size: 12.5px;
-}
-
-@media (max-width: 699px) {
-  .reflection-options {
-    width: min(100%, 310px);
-    margin-top: 40px;
-    gap: 8px;
-  }
-
-  .reflection-option {
-    min-height: 40px;
-    padding: 8px 44px;
-    border-radius: 8px;
-  }
-
-  .takeaway-content {
-    padding: 24px 16px max(24px, env(safe-area-inset-bottom));
-  }
-
-  .takeaway-hero {
-    margin-top: 24px;
-    padding: 20px 18px 18px;
-    border-radius: 14px;
-  }
-
-  .takeaway-hero__mascot {
-    top: 2px;
-    right: 8px;
-    width: 112px;
-    height: 112px;
-  }
-
-  .takeaway-hero__mascot img {
-    width: 112px;
-    height: 112px;
-  }
-
-  .takeaway-hero__label {
-    margin-bottom: 12px;
-  }
-
-  .takeaway-hero__text {
-    max-width: 290px;
-    font-size: 18px;
-  }
-
-  .takeaway-hero__caveat {
-    max-width: 300px;
-    font-size: 12px;
-  }
-
-  .takeaway-section {
-    margin-top: 16px;
-    padding: 18px 16px;
-    border-radius: 12px;
-  }
-
-  .takeaway-section h2 {
-    font-size: 15px;
-  }
-
-  .takeaway-section p {
-    font-size: 13px;
-  }
-
-  .takeaway-actions-row {
-    gap: 16px;
-  }
-
-  .takeaway-save,
-  .takeaway-explore {
-    min-height: 44px;
-    padding: 0 12px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 359px) {
-  .takeaway-content {
-    padding-inline: 12px;
-  }
-
-  .takeaway-hero__mascot {
-    width: 96px;
-    height: 96px;
-    right: 4px;
-  }
-
-  .takeaway-hero__mascot img {
-    width: 96px;
-    height: 96px;
-  }
-
-  .takeaway-hero__text {
-    font-size: 17px;
-  }
-
-  .takeaway-actions-row {
-    gap: 8px;
-  }
-}
-
-/* ===== Screen 3 final flow =====
-   End the 2-minute experience at one meaningful CTA: "ลองทำดู / Try this".
-   No download, save, explore, or secondary decision after the reflection.
-*/
-.takeaway-screen {
-  background: var(--ooca-gray-100);
-}
-
-.takeaway-content {
-  width: 100%;
-  min-height: calc(100svh - 64px);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px 16px max(32px, env(safe-area-inset-bottom));
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.takeaway-intro {
-  width: min(100%, 720px);
-  margin: 0 auto;
-  text-align: center;
-}
-
-.takeaway-intro h1 {
-  margin: 0;
-  font-size: clamp(24px, 3vw, 34px);
-  line-height: 1.3;
-}
-
-.takeaway-intro > p:last-child {
-  margin: 8px auto 0;
-  max-width: 560px;
-  color: #777;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.takeaway-hero {
-  position: relative;
-  width: min(100%, 720px);
-  box-sizing: border-box;
-  margin: 24px auto 0;
-  min-height: 172px;
-  padding: 20px 150px 20px 24px;
-  border: 0;
-  border-radius: 16px;
-  background: var(--takeaway-soft);
-  box-shadow: none;
-  text-align: left;
-  overflow: hidden;
-}
-
-.takeaway-hero__mascot {
-  position: absolute;
-  z-index: 1;
-  top: 8px;
-  right: 12px;
-  width: 132px;
-  height: 132px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.takeaway-hero__mascot img {
-  width: 132px;
-  height: 132px;
-  object-fit: contain;
-  animation: mascot-breathe 5s ease-in-out infinite;
-}
-
-.takeaway-hero__label {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  margin: 0 0 12px;
-  padding: 0 14px;
-  border-radius: 999px;
-  background: #fff;
-  color: #222;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.takeaway-hero__text {
-  position: relative;
-  z-index: 2;
-  margin: 0;
-  max-width: 500px;
-  color: #111;
-  font-size: clamp(19px, 2.3vw, 26px);
-  font-weight: 600;
-  line-height: 1.45;
-  white-space: pre-line;
-}
-
-.takeaway-hero__caveat {
-  position: relative;
-  z-index: 2;
-  max-width: 500px;
-  margin: 8px 0 0;
-  color: #555;
-  font-size: 12.5px;
-  line-height: 1.6;
-}
-
-.takeaway-section {
-  width: min(100%, 720px);
-  box-sizing: border-box;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin: 16px auto 0;
-  padding: 18px 20px;
-  border: 0;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
-  text-align: left;
-}
-
-.takeaway-section__icon {
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.takeaway-section__icon img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-
-.takeaway-section__icon--blue {
-  background: #e4effb;
-}
-
-.takeaway-section__icon--blue img {
-  filter: brightness(0) saturate(100%) invert(43%) sepia(96%) saturate(1600%) hue-rotate(196deg) brightness(91%);
-}
-
-.takeaway-section__icon--green {
-  background: #dbf0ee;
-}
-
-.takeaway-section__icon--green img {
-  filter: brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(890%) hue-rotate(127deg) brightness(82%);
-}
-
-.takeaway-section > div:last-child {
-  min-width: 0;
-  flex: 1;
-}
-
-.takeaway-section h2 {
-  margin: 0 0 4px;
-  color: #111;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.takeaway-section p {
-  margin: 0;
-  color: #555;
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-.takeaway-final {
-  width: min(100%, 720px);
-  margin: 24px auto 0;
-  text-align: center;
-}
-
-.takeaway-try--primary {
-  width: min(100%, 280px);
-  min-height: 48px;
-  margin: 0 auto;
-  padding: 0 20px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--ooca-primary);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  box-shadow: 0 6px 16px rgb(0 196 179 / 16%);
-  transition: transform 160ms ease, filter 160ms ease, box-shadow 180ms ease;
-}
-
-.takeaway-try--primary:hover {
-  filter: brightness(.97);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgb(0 196 179 / 20%);
-}
-
-.takeaway-try--primary:active {
-  transform: translateY(1px) scale(.99);
-}
-
-.takeaway-try--primary:focus-visible {
-  outline: 3px solid rgb(0 196 179 / 25%);
-  outline-offset: 3px;
-}
-
-.takeaway-try__arrow {
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 0;
-  transform: translateY(-1px);
-}
-
-.takeaway-try--done {
-  background: var(--takeaway-color);
-  box-shadow: none;
-  cursor: default;
-}
-
-.takeaway-try--done:hover {
-  filter: none;
-  transform: none;
-  box-shadow: none;
-}
-
-.takeaway-reassurance {
-  margin: 8px auto 0;
-  max-width: 420px;
-  color: #777;
-  font-size: 12px;
-  line-height: 1.55;
-}
-
-@media (max-width: 699px) {
-  .takeaway-content {
-    min-height: calc(100svh - 64px);
-    padding: 24px 16px max(24px, env(safe-area-inset-bottom));
-  }
-
-  .takeaway-intro h1 {
-    font-size: 23px;
-  }
-
-  .takeaway-intro > p:last-child {
-    max-width: 340px;
-    font-size: 11.5px;
-  }
-
-  .takeaway-hero {
-    min-height: 196px;
-    margin-top: 24px;
-    padding: 18px 126px 18px 16px;
-    border-radius: 14px;
-  }
-
-  .takeaway-hero__mascot {
-    top: 8px;
-    right: 2px;
-    width: 120px;
-    height: 120px;
-  }
-
-  .takeaway-hero__mascot img {
-    width: 120px;
-    height: 120px;
-  }
-
-  .takeaway-hero__label {
-    min-height: 30px;
-    margin-bottom: 10px;
-    padding-inline: 12px;
-    font-size: 11px;
-  }
-
-  .takeaway-hero__text {
-    max-width: 235px;
-    font-size: 18px;
-  }
-
-  .takeaway-hero__caveat {
-    max-width: 240px;
-    font-size: 11.5px;
-  }
-
-  .takeaway-section {
-    gap: 12px;
-    margin-top: 16px;
-    padding: 16px;
-    border-radius: 12px;
-  }
-
-  .takeaway-section__icon {
-    flex-basis: 36px;
-    width: 36px;
-    height: 36px;
-  }
-
-  .takeaway-section__icon img {
-    width: 18px;
-    height: 18px;
-  }
-
-  .takeaway-section h2 {
-    font-size: 15px;
-  }
-
-  .takeaway-section p {
-    font-size: 13px;
-  }
-
-  .takeaway-final {
-    margin-top: 24px;
-  }
-
-  .takeaway-try--primary {
-    width: min(100%, 280px);
-    min-height: 48px;
-  }
-}
-
-@media (max-width: 359px) {
-  .takeaway-content {
-    padding-inline: 12px;
-  }
-
-  .takeaway-hero {
-    min-height: 188px;
-    padding-right: 112px;
-  }
-
-  .takeaway-hero__mascot {
-    width: 108px;
-    height: 108px;
-  }
-
-  .takeaway-hero__mascot img {
-    width: 108px;
-    height: 108px;
-  }
-
-  .takeaway-hero__text {
-    font-size: 17px;
-  }
-}
 
 
 /* ===== Home refresh: welcoming, simple, and 2-minute-first ===== */
@@ -4300,11 +3502,11 @@ body {
 }
 
 
-/* ===== Screen 3 refresh — soft CI gradient + clear next-step hierarchy ===== */
+/* ===== Personal takeaway ===== */
 .takeaway-screen {
   background:
-    radial-gradient(circle at 50% 18%, rgb(219 240 238 / 76%) 0%, rgb(219 240 238 / 30%) 23%, transparent 46%),
-    linear-gradient(180deg, #eef9f8 0%, #f7f8f8 38%, #f6f6f6 100%);
+    radial-gradient(circle at 50% 14%, rgb(219 240 238 / 82%) 0%, rgb(219 240 238 / 38%) 24%, transparent 48%),
+    linear-gradient(180deg, #eef9f8 0%, #f7f9f9 45%, #f6f6f6 100%);
 }
 
 .takeaway-screen .experience-shell {
@@ -4315,17 +3517,20 @@ body {
 
 .takeaway-content {
   width: 100%;
-  min-height: calc(100svh - 64px);
-  min-height: calc(100dvh - 64px);
+  min-height: calc(100svh - 82px);
+  min-height: calc(100dvh - 82px);
   box-sizing: border-box;
-  padding: 28px 20px max(34px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 20px max(32px, env(safe-area-inset-bottom));
   overflow-x: hidden;
   overflow-y: auto;
 }
 
 .takeaway-intro {
-  width: min(100%, 720px);
-  margin-inline: auto;
+  width: min(100%, 620px);
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -4345,25 +3550,23 @@ body {
 
 .takeaway-intro > p:last-child {
   margin: 6px auto 0;
-  max-width: 580px;
+  max-width: 540px;
   color: #777;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.6;
 }
 
-/* Main personalised reflection card */
+/* Personalised reflection card — intentionally narrower so the page feels calm and contained. */
 .takeaway-hero {
   position: relative;
-  width: min(100%, 720px);
-  min-height: 188px;
-  margin: 24px auto 0;
-  padding: 20px 210px 20px 28px;
+  width: min(100%, 620px);
+  min-height: 190px;
+  margin: 22px auto 0;
+  padding: 22px 196px 22px 28px;
   box-sizing: border-box;
-  border: 0;
   border-radius: 18px;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--takeaway-soft) 92%, white), #dff3f1);
+  background: linear-gradient(135deg, #dff3f1 0%, #e9f8f7 100%);
   box-shadow: 0 10px 28px rgb(25 93 91 / 7%);
   overflow: hidden;
   text-align: left;
@@ -4372,70 +3575,85 @@ body {
 .takeaway-hero::after {
   content: '';
   position: absolute;
-  width: 210px;
-  height: 130px;
-  right: 8px;
-  bottom: -48px;
+  width: 190px;
+  height: 110px;
+  right: 10px;
+  bottom: -55px;
   border-radius: 50%;
-  background: rgb(255 255 255 / 38%);
-  filter: blur(14px);
+  background: rgb(255 255 255 / 42%);
+  filter: blur(16px);
   pointer-events: none;
 }
 
 .takeaway-hero__mascot {
   position: absolute;
   z-index: 2;
-  top: 0;
-  right: 8px;
-  width: 190px;
-  height: 190px;
+  top: 50%;
+  right: 12px;
+  width: 178px;
+  height: 178px;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  transform: translateY(-50%);
 }
 
 .takeaway-hero__mascot img {
   display: block;
-  width: 190px;
-  height: 190px;
+  width: 178px;
+  height: 178px;
   object-fit: contain;
   transform-origin: 50% 80%;
   animation: takeaway-mascot-float 4.8s ease-in-out infinite;
 }
 
-.takeaway-hero__label {
+/* Badge follows the Figma direction: one compact visual label before the main reflection. */
+.takeaway-hero__tag {
   position: relative;
   z-index: 3;
   display: inline-flex;
   align-items: center;
-  min-height: 32px;
-  margin: 0 0 12px;
-  padding: 0 14px;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 34px;
+  margin: 0 0 10px;
+  padding: 6px 14px;
+  box-sizing: border-box;
+  border: 1px solid rgb(255 255 255 / 96%);
   border-radius: 999px;
-  background: rgb(255 255 255 / 92%);
-  color: #303030;
+  background: #ffffff;
+  color: #222;
   font-size: 12px;
   font-weight: 500;
+  line-height: 1.35;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 4%);
 }
 
 .takeaway-hero__text {
   position: relative;
   z-index: 3;
   margin: 0;
-  max-width: 490px;
+  max-width: 365px;
   color: #111;
-  font-size: clamp(20px, 2.8vw, 28px);
+  font-size: clamp(21px, 2.8vw, 29px);
   font-weight: 600;
-  line-height: 1.42;
+  line-height: 1.4;
   letter-spacing: -.02em;
-  white-space: pre-line;
+}
+
+.takeaway-hero__text strong {
+  display: block;
+  color: var(--takeaway-color, var(--ooca-primary));
+  font-weight: 650;
 }
 
 .takeaway-hero__caveat {
   position: relative;
   z-index: 3;
-  max-width: 490px;
+  max-width: 365px;
   margin: 8px 0 0;
   color: #555;
   font-size: 12.5px;
@@ -4443,18 +3661,17 @@ body {
   line-height: 1.6;
 }
 
-/* Insight + next step cards */
 .takeaway-section {
-  width: min(100%, 720px);
+  width: min(100%, 620px);
   box-sizing: border-box;
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  margin: 16px auto 0;
+  margin: 14px auto 0;
   padding: 18px 20px;
   border: 1px solid rgb(255 255 255 / 90%);
   border-radius: 15px;
-  background: rgb(255 255 255 / 94%);
+  background: rgb(255 255 255 / 96%);
   box-shadow: 0 5px 18px rgb(0 0 0 / 4%);
   text-align: left;
 }
@@ -4475,16 +3692,11 @@ body {
   object-fit: contain;
 }
 
-.takeaway-section__icon--blue {
-  background: #e4effb;
-}
+.takeaway-section__icon--blue { background: #e4effb; }
+.takeaway-section__icon--green { background: #dbf0ee; }
 
 .takeaway-section__icon--blue img {
   filter: brightness(0) saturate(100%) invert(43%) sepia(96%) saturate(1600%) hue-rotate(196deg) brightness(91%);
-}
-
-.takeaway-section__icon--green {
-  background: #dbf0ee;
 }
 
 .takeaway-section__icon--green img {
@@ -4512,28 +3724,21 @@ body {
   line-height: 1.65;
 }
 
-/* Future step: available in the experience, but not active in this MVP. */
-.takeaway-section--next {
-  align-items: flex-start;
-}
-
 .takeaway-try--disabled {
   width: 100%;
   min-height: 44px;
   margin-top: 14px;
   padding: 0 18px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 8px;
   box-sizing: border-box;
-  background: #d7e1e8;
+  background: #d3dde5;
   color: #fff;
   font-family: inherit;
   font-size: 13px;
   font-weight: 500;
   line-height: 1;
   cursor: not-allowed;
-  opacity: 1;
-  transition: background-color 160ms ease;
 }
 
 .takeaway-try--disabled:disabled {
@@ -4543,17 +3748,17 @@ body {
   box-shadow: none;
 }
 
-.takeaway-locked-hint {
+.takeaway-try-note {
   margin-top: 7px !important;
   color: #9aa3a5 !important;
   font-size: 10.5px !important;
   line-height: 1.45 !important;
+  text-align: center;
 }
 
-/* The only active action on Screen 3: restart the experience from Home. */
 .takeaway-final {
-  width: min(100%, 720px);
-  margin: 24px auto 0;
+  width: min(100%, 620px);
+  margin: 22px auto 0;
   text-align: center;
 }
 
@@ -4579,9 +3784,7 @@ body {
   filter: brightness(.98);
 }
 
-.takeaway-home-button:active {
-  transform: translateY(0) scale(.985);
-}
+.takeaway-home-button:active { transform: translateY(0) scale(.985); }
 
 .takeaway-home-button:focus-visible {
   outline: 3px solid rgb(0 196 179 / 25%);
@@ -4595,7 +3798,7 @@ body {
 
 @media (max-width: 699px) {
   .takeaway-content {
-    min-height: calc(100svh - 64px);
+    min-height: calc(100svh - 82px);
     padding: 22px 16px max(28px, env(safe-area-inset-bottom));
   }
 
@@ -4613,45 +3816,46 @@ body {
   .takeaway-hero {
     width: 100%;
     min-height: 198px;
-    margin-top: 22px;
-    padding: 18px 128px 18px 16px;
+    margin-top: 20px;
+    padding: 18px 122px 18px 16px;
     border-radius: 14px;
   }
 
   .takeaway-hero__mascot {
-    top: 1px;
-    right: -1px;
-    width: 142px;
-    height: 142px;
+    top: 50%;
+    right: -2px;
+    width: 136px;
+    height: 136px;
   }
 
   .takeaway-hero__mascot img {
-    width: 142px;
-    height: 142px;
+    width: 136px;
+    height: 136px;
   }
 
-  .takeaway-hero__label {
-    min-height: 30px;
-    margin-bottom: 10px;
-    padding-inline: 12px;
-    font-size: 11px;
-    white-space: nowrap;
+  .takeaway-hero__tag {
+    max-width: 205px;
+    min-height: 34px;
+    margin-bottom: 8px;
+    padding: 6px 12px;
+    font-size: 10.5px;
   }
 
   .takeaway-hero__text {
-    max-width: 235px;
+    max-width: 215px;
     font-size: 18px;
     line-height: 1.42;
   }
 
   .takeaway-hero__caveat {
-    max-width: 238px;
+    max-width: 215px;
     margin-top: 7px;
     font-size: 11.5px;
     line-height: 1.55;
   }
 
   .takeaway-section {
+    width: 100%;
     gap: 12px;
     margin-top: 14px;
     padding: 16px;
@@ -4669,100 +3873,65 @@ body {
     height: 18px;
   }
 
-  .takeaway-section h2 {
-    font-size: 15px;
-  }
-
-  .takeaway-section p {
-    font-size: 12.5px;
-    line-height: 1.62;
-  }
+  .takeaway-section h2 { font-size: 15px; }
+  .takeaway-section p { font-size: 12.5px; line-height: 1.62; }
 
   .takeaway-try--disabled {
-    width: 100%;
     min-height: 42px;
     margin-top: 12px;
     font-size: 13px;
   }
 
-  .takeaway-locked-hint {
-    font-size: 10px !important;
-  }
-
-  .takeaway-final {
-    margin-top: 22px;
-  }
-
-  .takeaway-home-button {
-    width: min(100%, 270px);
-    min-height: 48px;
-  }
+  .takeaway-final { margin-top: 22px; }
+  .takeaway-home-button { width: min(100%, 270px); min-height: 48px; }
 }
 
 @media (max-width: 359px) {
-  .takeaway-content {
-    padding-inline: 12px;
-  }
+  .takeaway-content { padding-inline: 12px; }
 
   .takeaway-hero {
     min-height: 188px;
-    padding-right: 112px;
+    padding-right: 108px;
   }
 
   .takeaway-hero__mascot {
-    width: 124px;
-    height: 124px;
-    right: -3px;
+    width: 122px;
+    height: 122px;
+    right: -2px;
   }
 
   .takeaway-hero__mascot img {
-    width: 124px;
-    height: 124px;
+    width: 122px;
+    height: 122px;
   }
 
-  .takeaway-hero__text {
-    font-size: 17px;
-  }
-
-  .takeaway-hero__caveat {
-    font-size: 11px;
-  }
+  .takeaway-hero__text { font-size: 17px; }
+  .takeaway-hero__caveat { font-size: 11px; }
 }
 
 @media (min-width: 700px) {
-  .takeaway-content {
-    padding-top: 30px;
-  }
+  .takeaway-content { padding-top: 28px; }
 
   .takeaway-hero {
-    min-height: 210px;
+    min-height: 194px;
     padding-top: 22px;
     padding-bottom: 22px;
   }
 
   .takeaway-hero__mascot {
-    width: 218px;
-    height: 218px;
-    top: -4px;
-    right: -2px;
+    width: 178px;
+    height: 178px;
   }
 
   .takeaway-hero__mascot img {
-    width: 218px;
-    height: 218px;
+    width: 178px;
+    height: 178px;
   }
 
-  .takeaway-section {
-    margin-top: 18px;
-  }
-
-  .takeaway-final {
-    margin-top: 24px;
-  }
+  .takeaway-section { margin-top: 14px; }
+  .takeaway-final { margin-top: 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .takeaway-hero__mascot {
-    animation: none !important;
-  }
+  .takeaway-hero__mascot { animation: none !important; }
 }

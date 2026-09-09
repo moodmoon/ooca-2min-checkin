@@ -1,87 +1,76 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import Home from './components/Home.vue'
-import WeatherCheckin from './components/WeatherCheckin.vue'
-import GuidedReflection from './components/Screen2.vue'
-import PersonalTakeaway from './components/Screen3.vue'
+import MoodCheckin from './components/MoodCheckin.vue'
+import GuidedReflection from './components/GuidedReflection.vue'
+import ReflectionTakeaway from './components/ReflectionTakeaway.vue'
 
-const screen = ref('home')
+const currentView = ref('home')
 const lang = ref('th')
 const selectedMood = ref(null)
 const selectedReflection = ref(null)
 
-function pushScreen(nextScreen) {
-  const state = { ...(window.history.state || {}), oocaScreen: nextScreen }
+function pushView(nextView) {
+  const state = { ...(window.history.state || {}), oocaView: nextView }
   window.history.pushState(state, '', window.location.pathname + window.location.search)
-  screen.value = nextScreen
+  currentView.value = nextView
 }
 
 function start(selectedLang) {
   lang.value = selectedLang
   selectedMood.value = null
   selectedReflection.value = null
-  pushScreen('weather')
+  pushView('mood')
 }
 
 function goToReflection(mood) {
   selectedMood.value = mood
   selectedReflection.value = null
-  pushScreen('reflection')
+  pushView('reflection')
 }
 
 function goToTakeaway(reflection) {
   selectedReflection.value = reflection
-  pushScreen('takeaway')
-}
-
-function handleTryStep() {
-  // Screen 3 intentionally ends the current MVP here.
-  // A future pause / breathing flow can be connected from this event.
-}
-
-function restart() {
-  selectedMood.value = null
-  selectedReflection.value = null
-  pushScreen('weather')
+  pushView('takeaway')
 }
 
 function backHome() {
   selectedMood.value = null
   selectedReflection.value = null
-  screen.value = 'home'
+  currentView.value = 'home'
 
   // Logo = a true home navigation. Replace the current experience state
   // so Browser Back returns to the previous website/page, not to the old step.
   window.history.replaceState(
-    { oocaScreen: 'home' },
+    { oocaView: 'home' },
     '',
     window.location.pathname + window.location.search
   )
 }
 
 function handlePopState(event) {
-  const nextScreen = event.state?.oocaScreen
+  const nextView = event.state?.oocaView
 
-  if (!nextScreen || nextScreen === 'home') {
-    screen.value = 'home'
+  if (!nextView || nextView === 'home') {
+    currentView.value = 'home'
     return
   }
 
   // Browser Back is the only back control in the experience.
   // Preserve selections when navigating back from a later step.
-  if (nextScreen === 'weather') {
-    screen.value = 'weather'
-  } else if (nextScreen === 'reflection' && selectedMood.value) {
-    screen.value = 'reflection'
-  } else if (nextScreen === 'takeaway' && selectedMood.value && selectedReflection.value) {
-    screen.value = 'takeaway'
+  if (nextView === 'mood') {
+    currentView.value = 'mood'
+  } else if (nextView === 'reflection' && selectedMood.value) {
+    currentView.value = 'reflection'
+  } else if (nextView === 'takeaway' && selectedMood.value && selectedReflection.value) {
+    currentView.value = 'takeaway'
   } else {
-    screen.value = 'home'
+    currentView.value = 'home'
   }
 }
 
 onMounted(() => {
-  window.history.replaceState({ oocaScreen: 'home' }, '', window.location.pathname + window.location.search)
+  window.history.replaceState({ oocaView: 'home' }, '', window.location.pathname + window.location.search)
   window.addEventListener('popstate', handlePopState)
 })
 
@@ -91,30 +80,28 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Home v-if="screen === 'home'" @start="start" />
+  <Home v-if="currentView === 'home'" @start="start" />
 
-  <WeatherCheckin
-    v-else-if="screen === 'weather'"
+  <MoodCheckin
+    v-else-if="currentView === 'mood'"
     :lang="lang"
     @home="backHome"
     @next="goToReflection"
   />
 
   <GuidedReflection
-    v-else-if="screen === 'reflection'"
+    v-else-if="currentView === 'reflection'"
     :lang="lang"
     :mood="selectedMood"
     @home="backHome"
     @next="goToTakeaway"
   />
 
-  <PersonalTakeaway
+  <ReflectionTakeaway
     v-else
     :lang="lang"
     :mood="selectedMood"
     :reflection="selectedReflection"
     @home="backHome"
-    @restart="restart"
-    @try-step="handleTryStep"
   />
 </template>

@@ -138,7 +138,7 @@ function next() {
 </script>
 
 <template>
-  <main class="ooca-page ooca-screen weather-checkin">
+  <main class="ooca-page ooca-screen mood-checkin">
     <div class="experience-shell">
       <OocaHeader :lang="lang" @home="emit('home')" />
 
