@@ -27,7 +27,7 @@ function goHome() {
 </script>
 
 <template>
-  <header class="ooca-header">
+  <header class="ooca-header font-prompt">
     <div class="ooca-header__inner">
       <button
         class="ooca-header__logo-button"
@@ -35,7 +35,7 @@ function goHome() {
         :aria-label="lang === 'th' ? 'กลับหน้าแรก' : 'Go to home'"
         @click="goHome"
       >
-        <img src="/logo.svg" alt="mindf:ll" class="ooca-header__logo" />
+        <img src="/logo.svg" alt="mindfull" class="ooca-header__logo" />
       </button>
 
       <button

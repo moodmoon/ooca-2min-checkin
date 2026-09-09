@@ -1,6 +1,5 @@
 <script setup>
 import { computed, ref } from 'vue'
-import OocaButton from './ui/OocaButton.vue'
 import OocaHeader from './OocaHeader.vue'
 
 const props = defineProps({
@@ -9,74 +8,51 @@ const props = defineProps({
   reflection: { type: Object, default: null },
 })
 
-const emit = defineEmits(['restart', 'home'])
+const emit = defineEmits(['restart', 'home', 'try-step'])
 const triedStep = ref(false)
-const saved = ref(false)
-const showExplore = ref(false)
-const closed = ref(false)
 
 const copy = computed(() => props.lang === 'en' ? {
-  title: 'What We Noticed', accent: ' Together',
-  subtitle: 'Based on what you chose, let’s look at what might be on your mind.',
+  title: 'What We Noticed',
+  accent: ' Together',
+  subtitle: 'From what you chose, here’s what we noticed together.',
   fromSelection: 'From what you chose',
   insightLabel: 'What we noticed',
-  nextLabel: 'One small step you can try',
-  tryButton: 'Try this', tryDone: 'Nice — however small, that counts.',
-  whatNext: 'What would you like to do next?',
-  save: 'Save this', saved: 'Saved',
-  explore: 'Explore', later: 'Maybe later',
-  exploreTitle: 'A little more to explore',
-  exploreItems: [
-    { title: 'Rest isn’t laziness', body: 'Taking a pause is one way of taking care of yourself.' },
-    { title: 'Try writing it down', body: 'Putting a thought into words can make it feel a little lighter.' },
-    { title: 'Slow breathing helps', body: 'A few slow breaths can gently bring you back to the present.' },
-  ],
-  exploreClose: 'Close',
-  goodbye: 'Thanks for pausing to notice yourself today.',
-  home: 'Back to home',
-  back: 'Back',
+  nextLabel: 'One small step to try',
+  tryButton: 'Try this',
+  tryDone: 'You did it. Small steps still count.',
+  reassurance: 'You don’t have to do it perfectly. Just give yourself a moment.',
 } : {
-  title: 'เราสังเกต', accent: 'อะไรบางอย่างด้วยกัน',
-  subtitle: 'จากสิ่งที่คุณเลือก ลองมาดูสิ่งที่อาจกำลังอยู่ในใจกัน',
+  title: 'เราสังเกต',
+  accent: 'อะไรบางอย่างด้วยกัน',
+  subtitle: 'จากสิ่งที่คุณเลือก ลองมาดูสิ่งที่เราเห็นด้วยกันนะ',
   fromSelection: 'จากสิ่งที่คุณเลือก',
   insightLabel: 'สิ่งที่เราเห็น',
   nextLabel: 'ก้าวเล็ก ๆ ที่ลองได้',
-  tryButton: 'ลองทำสิ่งนี้', tryDone: 'เก่งมากที่ลองนะ ไม่ว่าจะเล็กแค่ไหนก็มีความหมาย',
-  whatNext: 'อยากทำอะไรต่อดี?',
-  save: 'เก็บสิ่งนี้ไว้', saved: 'เก็บไว้แล้ว',
-  explore: 'สำรวจต่อ', later: 'ไว้ก่อนก็ได้',
-  exploreTitle: 'ลองอ่านเพิ่มเติมได้ที่นี่',
-  exploreItems: [
-    { title: 'การพักไม่ใช่ความขี้เกียจ', body: 'การหยุดพักก็เป็นวิธีหนึ่งในการดูแลตัวเองเหมือนกันนะ' },
-    { title: 'ลองเขียนสิ่งที่อยู่ในใจ', body: 'การเขียนความคิดออกมาอาจช่วยให้รู้สึกเบาลงได้บ้าง' },
-    { title: 'หายใจช้า ๆ ช่วยได้จริง', body: 'การหายใจช้า ๆ สักไม่กี่ครั้งช่วยพาใจกลับมาอยู่กับปัจจุบันได้' },
-  ],
-  exploreClose: 'ปิด',
-  goodbye: 'ขอบคุณที่แวะมาสังเกตใจตัวเองนะ',
-  home: 'กลับหน้าหลัก',
-  back: 'ย้อนกลับ',
+  tryButton: 'ลองทำดู',
+  tryDone: 'ลองแล้วนะ ก้าวเล็ก ๆ ก็มีความหมายเหมือนกัน',
+  reassurance: 'ไม่ต้องทำให้สมบูรณ์แบบ แค่ให้เวลากับตัวเองสักนิดก็พอ',
 })
 
 const reflectionId = computed(() => props.reflection?.id || 'explore')
 const moodColor = computed(() => props.mood?.color || '#00C4B3')
 const moodSoft = computed(() => props.mood?.soft || '#DBF0EE')
-const mascotSrc = computed(() => props.mood?.image || '/img/mooca-summer.svg')
+const mascotSrc = computed(() => props.mood?.image || '/img/mooca-neutral.svg')
 
 const hero = computed(() => {
   const id = reflectionId.value
   const th = {
-    rest: { lead: 'วันนี้ใจของคุณอาจกำลัง\nต้องการพื้นที่ให้พัก', caveat: 'การอยากพักไม่ได้แปลว่าคุณอ่อนแอนะ บางทีใจอาจกำลังขอจังหวะที่เบาลง' },
-    space: { lead: 'วันนี้ใจของคุณอาจกำลัง\nอยากให้ความคิดเบาลงสักหน่อย', caveat: 'ไม่ต้องรีบจัดการทุกความคิดพร้อมกันก็ได้ ลองปล่อยบางเรื่องไว้ก่อนนะ' },
-    manage: { lead: 'วันนี้ใจของคุณอาจกำลัง\nอยากจัดการทีละเรื่องเบา ๆ', caveat: 'ไม่ต้องทำให้เสร็จทุกอย่างในวันเดียว ค่อย ๆ ไปทีละก้าวก็พอ' },
+    rest: { lead: 'วันนี้ใจของคุณอาจกำลัง\nต้องการพื้นที่ให้พัก', caveat: 'การอยากพักไม่ได้แปลว่าคุณอ่อนแอ บางทีใจก็กำลังขอจังหวะที่เบาลง' },
+    space: { lead: 'วันนี้ใจของคุณอาจกำลัง\nอยากให้ความคิดเบาลง', caveat: 'ไม่ต้องรีบจัดการทุกความคิดพร้อมกัน บางเรื่องวางไว้ก่อนได้' },
+    manage: { lead: 'วันนี้ใจของคุณอาจกำลัง\nอยากค่อย ๆ จัดการทีละอย่าง', caveat: 'ไม่ต้องทำทุกอย่างให้เสร็จในวันเดียว ค่อย ๆ ไปทีละก้าวก็พอ' },
     listen: { lead: 'วันนี้ใจของคุณอาจกำลัง\nอยากมีใครสักคนรับฟัง', caveat: 'การอยากให้ใครสักคนรับฟัง ไม่ใช่เรื่องที่ต้องเกรงใจเลย' },
-    explore: { lead: 'วันนี้ใจของคุณอาจกำลัง\nยังไม่แน่ใจว่าต้องการอะไร', caveat: 'ไม่ต้องรีบหาคำตอบตอนนี้ก็ได้ แค่ลองสังเกตไปเรื่อย ๆ ก่อนนะ' },
+    explore: { lead: 'วันนี้ใจของคุณอาจกำลัง\nยังไม่แน่ใจว่าต้องการอะไร', caveat: 'ไม่ต้องรีบหาคำตอบตอนนี้ แค่ค่อย ๆ สังเกตก็เป็นจุดเริ่มต้นแล้ว' },
   }
   const en = {
-    rest: { lead: 'Today your mind may be\nasking for a little room to rest.', caveat: 'Needing rest doesn’t mean you’re weak — sometimes your mind is just asking for a softer pace.' },
-    space: { lead: 'Today your mind may be\nlooking for things to feel a little lighter.', caveat: 'You don’t have to sort every thought at once — it’s okay to let some things wait.' },
-    manage: { lead: 'Today your mind may want to\ntake things one small step at a time.', caveat: 'You don’t need to finish everything today. One step at a time is enough.' },
+    rest: { lead: 'Today your mind may be\nasking for a little room to rest.', caveat: 'Needing rest does not mean you are weak. Sometimes your mind simply needs a softer pace.' },
+    space: { lead: 'Today your mind may be\nlooking for things to feel lighter.', caveat: 'You do not have to sort every thought at once. Some things can wait.' },
+    manage: { lead: 'Today your mind may want to\ntake things one small step at a time.', caveat: 'You do not need to finish everything today. One step at a time is enough.' },
     listen: { lead: 'Today your mind may be\nhoping for someone to listen.', caveat: 'Wanting to be heard is never something to feel bad about.' },
-    explore: { lead: 'Today your mind may simply\nnot be sure yet — and that’s okay.', caveat: 'There’s no need to find the answer right now. Noticing is already a start.' },
+    explore: { lead: 'Today your mind may simply\nnot be sure yet — and that is okay.', caveat: 'There is no need to find the answer right now. Noticing is already a start.' },
   }
   return (props.lang === 'en' ? en : th)[id] || (props.lang === 'en' ? en.explore : th.explore)
 })
@@ -84,23 +60,23 @@ const hero = computed(() => {
 const insight = computed(() => {
   const id = reflectionId.value
   if (props.lang === 'en') {
-    if (id === 'rest') return 'It sounds like your mind may be asking for a little more space and rest today.'
-    if (id === 'space') return 'There may be a lot moving through your mind right now. You don’t have to sort it all at once.'
-    if (id === 'manage') return 'You may feel better when you can make things a little smaller and handle them one step at a time.'
+    if (id === 'rest') return 'Your choice may be a gentle reminder that rest deserves some space today.'
+    if (id === 'space') return 'There may be a lot moving through your mind right now. You can let one thing wait.'
+    if (id === 'manage') return 'Making things smaller can make the next step feel a little easier.'
     if (id === 'listen') return 'Sometimes, being heard can make what is on your mind feel a little less heavy.'
-    return 'You don’t need a perfect label for what you feel. Noticing that something is there is already a start.'
+    return 'You do not need the perfect label for how you feel. Noticing that something is there is already a start.'
   }
-  if (id === 'rest') return 'การพักอาจเป็นสิ่งที่ใจของคุณกำลังต้องการอยู่ ไม่จำเป็นต้องรีบจัดการทุกอย่างในตอนนี้ก็ได้'
-  if (id === 'space') return 'ดูเหมือนว่าตอนนี้อาจมีหลายอย่างกำลังวิ่งอยู่ในหัว คุณไม่จำเป็นต้องจัดการทุกอย่างพร้อมกัน'
-  if (id === 'manage') return 'บางทีการทำเรื่องที่อยู่ตรงหน้าให้เล็กลง แล้วค่อย ๆ จัดการทีละอย่าง อาจช่วยให้ใจเบาขึ้น'
-  if (id === 'listen') return 'บางครั้งการได้มีใครสักคนรับฟัง ก็ช่วยให้สิ่งที่อยู่ในใจรู้สึกเบาลงได้'
-  return 'คุณไม่จำเป็นต้องหาคำที่ถูกต้องให้ความรู้สึกตอนนี้ แค่สังเกตว่ามีบางอย่างอยู่ในใจก็เป็นจุดเริ่มต้นแล้ว'
+  if (id === 'rest') return 'บางทีสิ่งที่ใจต้องการตอนนี้อาจเป็นการได้หยุดพัก โดยไม่ต้องรู้สึกผิดกับมัน'
+  if (id === 'space') return 'ตอนนี้อาจมีหลายอย่างกำลังวิ่งอยู่ในหัว ไม่เป็นไรถ้าจะวางบางเรื่องไว้ก่อน'
+  if (id === 'manage') return 'การทำเรื่องที่อยู่ตรงหน้าให้เล็กลง อาจทำให้ก้าวต่อไปดูง่ายขึ้น'
+  if (id === 'listen') return 'บางครั้งการได้มีใครสักคนรับฟัง ก็ทำให้สิ่งที่อยู่ในใจรู้สึกเบาลงได้'
+  return 'คุณไม่จำเป็นต้องหาคำที่ถูกต้องให้ความรู้สึก แค่สังเกตว่ามีบางอย่างอยู่ในใจก็เป็นจุดเริ่มต้นแล้ว'
 })
 
 const nextStep = computed(() => {
   const id = reflectionId.value
   if (props.lang === 'en') {
-    if (id === 'rest') return 'Put down what you’re doing for 5 minutes, and let yourself actually rest.'
+    if (id === 'rest') return 'Put down what you are doing for 5 minutes and let yourself rest.'
     if (id === 'space') return 'Write down one thought and let the rest wait for now.'
     if (id === 'manage') return 'Choose one tiny thing you can finish today. Let the rest wait.'
     if (id === 'listen') return 'Send one message to someone you feel safe talking to.'
@@ -115,15 +91,7 @@ const nextStep = computed(() => {
 
 function tryStep() {
   triedStep.value = true
-}
-
-function toggleSave() {
-  saved.value = !saved.value
-}
-
-function closeExperience() {
-  showExplore.value = false
-  closed.value = true
+  emit('try-step', { id: reflectionId.value, action: nextStep.value })
 }
 </script>
 
@@ -132,77 +100,61 @@ function closeExperience() {
     <div class="experience-shell">
       <OocaHeader :lang="lang" @home="emit('home')" />
 
-      <section v-if="!closed" class="takeaway-content" :style="{ '--takeaway-color': moodColor, '--takeaway-soft': moodSoft }">
-        <div class="takeaway-mascot-wrap reveal reveal-0">
-          <img :src="mascotSrc" alt="" class="takeaway-mascot" />
-        </div>
-
+      <section
+        class="takeaway-content"
+        :style="{ '--takeaway-color': moodColor, '--takeaway-soft': moodSoft }"
+      >
         <div class="experience-intro takeaway-intro reveal reveal-1" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
           <h1>{{ copy.title }}<span>{{ copy.accent }}</span></h1>
           <p>{{ copy.subtitle }}</p>
         </div>
 
-        <div class="takeaway-hero reveal reveal-2" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
+        <article class="takeaway-hero reveal reveal-2" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
+          <div class="takeaway-hero__mascot" aria-hidden="true">
+            <img :src="mascotSrc" alt="" />
+          </div>
+
           <p class="takeaway-hero__label">{{ copy.fromSelection }}</p>
-          <p class="takeaway-hero__text" style="white-space: pre-line;">{{ hero.lead }}</p>
+          <h2 class="takeaway-hero__text">{{ hero.lead }}</h2>
           <p class="takeaway-hero__caveat">{{ hero.caveat }}</p>
-        </div>
+        </article>
 
-        <div class="takeaway-section reveal reveal-3" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
-          <h2><img alt="" aria-hidden="true" />{{ copy.insightLabel }}</h2>
-          <p>{{ insight }}</p>
-        </div>
+        <article class="takeaway-section takeaway-section--insight reveal reveal-3" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
+          <div class="takeaway-section__icon takeaway-section__icon--blue" aria-hidden="true">
+            <img src="/img/icon/view-on.svg" alt="" />
+          </div>
+          <div>
+            <h2>{{ copy.insightLabel }}</h2>
+            <p>{{ insight }}</p>
+          </div>
+        </article>
 
-        <div class="takeaway-section takeaway-section--next reveal reveal-4" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
-          <h2><img alt="" aria-hidden="true" />{{ copy.nextLabel }}</h2>
-          <p>{{ nextStep }}</p>
-          <button v-if="!triedStep" class="takeaway-try" type="button" @click="tryStep">{{ copy.tryButton }}</button>
+        <article class="takeaway-section takeaway-section--next reveal reveal-4" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
+          <div class="takeaway-section__icon takeaway-section__icon--green" aria-hidden="true">
+            <img src="/img/icon/star.svg" alt="" />
+          </div>
+          <div class="takeaway-next-copy">
+            <h2>{{ copy.nextLabel }}</h2>
+            <p>{{ nextStep }}</p>
+          </div>
+        </article>
+
+        <div class="takeaway-final reveal reveal-5" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
+          <button
+            class="takeaway-try takeaway-try--primary"
+            :class="{ 'takeaway-try--done': triedStep }"
+            type="button"
+            :aria-pressed="triedStep"
+            @click="tryStep"
+          >
+            <span>{{ triedStep ? copy.tryDone : copy.tryButton }}</span>
+            <span v-if="!triedStep" class="takeaway-try__arrow" aria-hidden="true">›</span>
+          </button>
           <Transition name="action-pop">
-            <p v-if="triedStep" class="takeaway-try-done">{{ copy.tryDone }}</p>
+            <p v-if="triedStep" class="takeaway-reassurance">{{ copy.reassurance }}</p>
           </Transition>
         </div>
-
-        <div class="takeaway-whatnext reveal reveal-5" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
-          <p class="takeaway-whatnext__label">{{ copy.whatNext }}</p>
-          <div class="takeaway-actions-row">
-            <button
-              class="takeaway-save"
-              :class="{ 'takeaway-save--done': saved }"
-              type="button"
-              :aria-pressed="saved"
-              @click="toggleSave"
-            >
-              <img :src="saved ? '/img/icon/check.svg' : '/img/icon/bookmark.svg'" alt="" aria-hidden="true" />{{ saved ? copy.saved : copy.save }}
-            </button>
-            <button class="takeaway-explore" type="button" @click="showExplore = true">
-              {{ copy.explore }}<img src="/img/icon/arrow-next.svg" alt="" aria-hidden="true" />
-            </button>
-          </div>
-          <button class="takeaway-later" type="button" @click="closeExperience">{{ copy.later }}</button>
-        </div>
       </section>
-
-      <section v-else class="takeaway-closing" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'">
-        <img :src="mascotSrc" alt="" />
-        <p>{{ copy.goodbye }}</p>
-        <OocaButton class="experience-button" @click="emit('home')">{{ copy.home }}</OocaButton>
-      </section>
-
-      <Transition name="sheet">
-        <div v-if="showExplore" class="explore-sheet-backdrop" @click.self="showExplore = false">
-          <div class="explore-sheet" :class="lang === 'en' ? 'font-gotham' : 'font-prompt'" role="dialog" aria-modal="true" :aria-label="copy.exploreTitle">
-            <div class="explore-sheet__handle" aria-hidden="true"></div>
-            <h3>{{ copy.exploreTitle }}</h3>
-            <ul>
-              <li v-for="item in copy.exploreItems" :key="item.title">
-                <strong>{{ item.title }}</strong>
-                <span>{{ item.body }}</span>
-              </li>
-            </ul>
-            <button class="explore-sheet__close" type="button" @click="showExplore = false">{{ copy.exploreClose }}</button>
-          </div>
-        </div>
-      </Transition>
     </div>
   </main>
 </template>

@@ -34,6 +34,11 @@ function goToTakeaway(reflection) {
   pushScreen('takeaway')
 }
 
+function handleTryStep() {
+  // Screen 3 intentionally ends the current MVP here.
+  // A future pause / breathing flow can be connected from this event.
+}
+
 function restart() {
   selectedMood.value = null
   selectedReflection.value = null
@@ -110,5 +115,6 @@ onBeforeUnmount(() => {
     :reflection="selectedReflection"
     @home="backHome"
     @restart="restart"
+    @try-step="handleTryStep"
   />
 </template>
